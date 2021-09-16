@@ -1,0 +1,187 @@
+---
+title: "Workshop de Git e GitHub"
+author: "Davi Yokogawa"
+date: "15/09/2021"
+institute: "PET-ESTATÍSTICA-UFPR"
+output:
+  beamer_presentation:
+    theme: "Madrid"
+    color: "default"
+---
+## Git 
+
+Git é um sistema de controle de versão que auxilia hoje a maioria das empresas que utilizam de desenvolvimento de software. Com ele é possível entender todo o histórico de avanço dos projetos nele inseridos, analisar como foram feitos e se necessário voltar a eles a qualquer momento.
+
+\center
+![](git.jpeg){width=40%}
+
+## Github
+
+O Github é um serviço online, hoje distribuído pela Microsoft que hospeda repositórios Git, através dele temos um local onde armazenar todos os nossos projetos e consequentemente, os commits (comando que salva as alterações feitas) e ramos advindos deste projeto.
+
+\center
+![](github.jpeg){width=40%}
+
+## Instalação do Git no Windows
+
+Para a instalação do Git no Windows, precisamos primeiramente **[baixar o Git](https://git-scm.com/download/win)** e em seguida fazer todo o processo de instalação e durante esse processo, selecionar esses itens específicos:
+
+\center
+![](bash.jpeg){width=80%}
+
+## Configurando o Git no Windows e criando uma chave SSH
+Esses dois comandos servem para você setar o seu nome e seu email principal no seu computador (necessariamente, esse tem que ser o mesmo email que irá utilizar no GitHub)
+
+
+**No Windows, a execução de todos esses comandos são feitos através do Git Bash**
+```{bash eval=FALSE}
+git config --global user.name "João da Silva" 
+git config --global user.email joao.da.silva@example.com
+```
+Após esse processo, será necessário criar uma chave SSH para o seu computador
+```{bash eval=FALSE}
+ssh-keygen -t ed25519 -C "joao.da.silva@example.com"
+clip < ~/.ssh/id_ed25519.pub
+```
+
+## Instalação do Git no Linux
+
+Para a instalação do Git no Linux depende muito de qual distribuição linux você utiliza, porém nesse material eu vou disponibilizar para vocês o método para a instalação em distribuições baseadas em Debian, como Ubuntu, Mint, etc.
+
+```{bash eval=FALSE}
+sudo apt-get update
+sudo apt-get install git-all
+```
+
+## Configurando o Git no Linux e criando uma chave SSH
+
+Esses dois comandos servem para você setar o seu nome e seu email principal no seu computador(necessariamente, esse tem que ser o mesmo email que irá utilizar no GitHub)
+```{bash eval=FALSE}
+git config --global user.name "João da Silva" 
+git config --global user.email joao.da.silva@example.com
+```
+Após esse processo, será necessário criar uma chave SSH para o seu computador
+```{bash eval=FALSE}
+ssh-keygen -t ed25519 -C "joao.da.silva@example.com"
+
+sudo apt-get update
+sudo apt-get install xclip
+
+xclip -selection clipboard < ~/.ssh/id_ed25519.pub
+```
+
+## Instalação do Git no Mac
+
+Para a instalação do Git no Mac, primeiramente você precisa ter instalado o homebrew que hoje, é o principal gerenciador de pacotes para Mac, com o homebrew instalado você poderá instalar o git. Segue abaixo as duas linhas de comando que são necessárias para a instalação do homebrew e do git no Mac.
+
+```{bash eval=FALSE}
+/usr/bin/ruby -e
+"$(curl -fsSL https://raw.githubusercontent.com/
+Homebrew/install/master/install)"
+
+brew install git
+```
+
+## Configurando o Git no Mac e criando uma chave SSH
+
+Esses dois comandos servem para você setar o seu nome e seu email principal no seu computador (necessáriamente, esse tem que ser o mesmo email que irá utilizar no GitHub)
+```{bash eval=FALSE}
+git config --global user.name "João da Silva" 
+git config --global user.email joao.da.silva@example.com
+```
+Após esse processo, será necessário criar uma chave SSH para o seu computador
+```{bash eval=FALSE}
+ssh-keygen -t ed25519 -C "joao.da.silva@example.com"
+pbcopy < ~/.ssh/id_ed25519.pub
+```
+
+## Comandos Básicos de utilização geral
+
+Esses comandos, são comandos básicos de Linux que nos auxilia na manipulação de pastas e arquivos dentro do Linux e do Mac, porém quando estamos utilizando o Git Bash no Windows esses comandos podem nos auxiliar também, segue abaixo os respectivos comandos:
+
+
+```{bash eval=FALSE}
+cd  # escolhe o diretório que irá trabalhar
+
+pwd # te mostra qual seu path atual
+
+ls # listar itens no diretório
+
+mkdir # cria um diretório
+
+cp pasta/arquivo_copiado pasta_para_copiar # copia o arquivo
+
+touch # cria um novo arquivo 
+```
+
+## Clonagem de repositório
+
+Nesse Workshop e nesse material iremos utilizar apenas da clonagem de repositório, não iremos criar um repositório internamente e subi-lo para o github, isso foi adotado para seguirmos um workflow melhor durante a aula e para facilitar os processos necessários durante o workshop, dito isso, segue abaixo o código de clonagem de repositório:
+
+```{bash eval=FALSE}
+git clone git@github.com:JoaoDaSilva/exemplo-workshop.git 
+# esse link será pego através do GitHub e irá clonar o
+# repositório através da chave SSH criada por 
+# meio dos processos que lhes foram apresentados acima.
+```
+
+## Branches e sua utilização
+
+As branches quando criadas, nada mais são que cópias idênticas do que está na main. 
+Main é sua branch principal, ou seja, é onde necessariamente estão todos os principais códigos da aplicação.
+As branches são úteis para ser possível fazer alterações no sistema sem necessáriamente mudar nada que esteja rodando no sistema (na main) diretamente e assim que você tiver garantia que essas alterações estão corretas, as alterações que foram feitas nessa branch serão alteradas na main.
+
+**Exemplificação de utilização de branches:**
+
+\center
+![](branch.jpeg){width=40%}
+
+
+## Branches e sua utilização
+
+
+
+```{bash eval=FALSE}
+git checkout -b "nova_branch" # cria uma nova branch
+
+git checkout main # comando para ir mudar entre branches
+# (onde está main pode ser nova_branch,
+# caso você não esteja nessa branch e queira acessá-la)
+
+git push origin nova_branch # faz o upload para o github
+# das alterações feitas
+# (esse upload não é feito direto na main)
+
+git branch -d nova_branch # deleta a branch
+```
+
+
+## Fazendo alterações e subindo as alterações para o GitHub
+
+```{bash eval=FALSE}
+touch exemplo.txt # cria novo arquivo
+
+git status # visualiza as alterações feitas
+
+git add exemplo.txt # adiciona em stagged a alteração feita
+
+git commit -m "Criando o arquivo exemplo.txt" # prepara
+# o arquivo para ser upado no github.
+# Escreva um breve comentário do
+# que está sendo alterado nesse commit
+
+git push origin nova_branch # cria o arquivo exemplo.txt
+# na branch nova_branch
+```
+
+## Adicionando as alterações da branch secundária para a principal
+
+```{bash eval=FALSE}
+git checkout main # voltando da branch nova_branch 
+# para a branch principal
+
+git merge nova_branch # adiciona na branch main as
+# alterações feitas na branch secundária
+
+git pull # atualiza sua branch main
+```
