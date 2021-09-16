@@ -24,7 +24,7 @@ O Github é um serviço online, hoje distribuído pela Microsoft que hospeda rep
 
 ## Instalação do Git no Windows
 
-Para a instalação do Git no Windows, precisamos primeiramente **[baixar o Git](https://git-scm.com/download/win)** e em seguida fazer todo o processo de instalação e durante esse processo, selecionar esses itens específicos:
+Para a instalação do Git no Windows, precisamos primeiramente *[baixar o Git](https://git-scm.com/download/win)* e em seguida fazer todo o processo de instalação e durante esse processo, selecionar esses itens específicos:
 
 \center
 ![](bash.jpeg){width=80%}
